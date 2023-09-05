@@ -1,10 +1,15 @@
 <template>
-  <hello-world />
+<v-card>
+  
+</v-card>
 </template>
 
 <script>
-
   export default {
-    name: 'HomeView',
+    
   }
 </script>
+
+<style scoped>
+
+</style>
