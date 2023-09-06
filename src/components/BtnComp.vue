@@ -2,6 +2,8 @@
   <v-btn
   v-bind="$attrs"
   v-on="$listeners"
+  :color="BtnColor"
+  :label="BtnLabel"
   rounded
   dense
   >
