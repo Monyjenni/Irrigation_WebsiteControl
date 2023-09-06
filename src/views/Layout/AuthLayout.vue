@@ -1,11 +1,12 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="inspire" :class="{'dark-theme': darkTheme}">
     <v-app-bar
       app
       color="white"
       flat
     >
-      <v-container class="py-0 fill-height">
+      <v-container class="px-0 fill-height">
+        <v-row>
         <v-avatar
           class="mr-10"
           color="grey darken-1"
@@ -22,14 +23,12 @@
         >
           {{ link.name }}
         </v-btn>
-
         <v-spacer></v-spacer>
-        <v-row class="ml-auto">
-            <v-responsive max-width="260">
-            <text-field label="Search" color="primary" prepend-inner-icon="mdi-magnify"/>
-          </v-responsive>
-          <btn-comp @click="toggleTheme" BtnLabel="Mode" />
-        </v-row>
+        <v-responsive max-width="260">
+          <text-field label="Search" color="primary" prepend-inner-icon="mdi-magnify"/>
+        </v-responsive>
+        <btn-comp @click="toggleTheme" BtnLabel="Mode" style="margin-right: 10px;" ></btn-comp>
+      </v-row>
       </v-container>
     </v-app-bar>
 
@@ -71,17 +70,21 @@
           <v-col>
             <v-sheet min-height="100vh" rounded="lg">
               <v-row>
-                <v-col cols="12">
-                  <v-img max-height="150"
-                  max-width="250" 
-                  src="../../assets/Img/Pie.png"/>
+                <v-col cols="12" md="8">
+                  <v-img max-height="150" max-width="400" src="../../assets/Img/Pie.png"/>
+                  <v-row style="margin-top: 20px;">
+                    <v-col cols="6" md="2">
+                      <Btn-dia BtnLabel="Turn On" title="Turn off " icon="mdi-watering-can" text="Successfully Turn On Valve !"/>
+                    </v-col>
+                    <v-col cols="6" md="2">
+                      <Btn-dia BtnLabel="Turn Off" title="Turn on valve !" icon="mdi-emoticon" text="Successfully Turn Off Valve !"/>
+                    </v-col>
+                  </v-row>
                 </v-col>
-                <Btn-dia BtnLabel="Turn On" title="Turn off " icon="mdi-watering-can" text="Successfully Turn On Valve !"/>
-                <Btn-dia BtnLabel="Turn Off" title="Turn on valve !" icon="mdi-emoticon" text="Successfully Turn Off Valve !"/>
+                <v-col cols="12" md="4">
+                  <weather-card />
+                </v-col>
               </v-row>
-              <v-col cols="12">
-                <weather-card />
-              </v-col>
             </v-sheet>
           </v-col>
         </v-row>
@@ -137,7 +140,7 @@ import TextField from '../../components/TextField.vue'
         },
 
       ],
-      darkTheme: true,
+      darkTheme: false,
     }),
     methods: {
     toggleTheme() {
@@ -147,3 +150,22 @@ import TextField from '../../components/TextField.vue'
   },
   }
 </script>
+<style>
+
+.dark-theme {
+  background-color: #1e1e1e; 
+  color: white; 
+}
+
+
+.dark-theme .v-main, .dark-theme .v-app-bar, .dark-theme .v-card {
+  background-color: transparent;
+  color: white; 
+}
+
+
+.dark-theme .v-btn, .dark-theme .v-btn--text, .dark-theme .v-list-item {
+  color: white;
+}
+
+</style>
