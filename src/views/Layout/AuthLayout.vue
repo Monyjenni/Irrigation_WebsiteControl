@@ -15,17 +15,21 @@
         <v-btn
           v-for="link in links"
           :key="link"
+          :to="link.path"
           text
+          class="font-weight-bold"
+
         >
-          {{ link }}
+          {{ link.name }}
         </v-btn>
 
         <v-spacer></v-spacer>
-
-        <v-responsive max-width="260">
-          <!-- <btn-comp @click="toggleTheme" BtnLabel="Mode" /> -->
-          <text-field label="Search" color="primary" prepend-inner-icon="mdi-magnify"/>
-        </v-responsive>
+        <v-row class="ml-auto">
+            <v-responsive max-width="260">
+            <text-field label="Search" color="primary" prepend-inner-icon="mdi-magnify"/>
+          </v-responsive>
+          <btn-comp @click="toggleTheme" BtnLabel="Mode" />
+        </v-row>
       </v-container>
     </v-app-bar>
 
@@ -36,13 +40,15 @@
             <v-sheet rounded="lg">
               <v-list color="transparent">
                 <v-list-item
-                  v-for="n in navLinks"
-                  :key="n"
+                  v-for="navLink in navLinks"
+                  :key="navLink"
+                  :to="navLink.path"
+                  text
                   link
                 >
                   <v-list-item-content>
                     <v-list-item-title>
-                      {{ n }}
+                      {{ navLink.name }}
                     </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
@@ -95,7 +101,7 @@ import TextField from '../../components/TextField.vue'
     WeatherCard,
     BtnDia,
     TextField,
-    // BtnComp
+    BtnComp
   },
     name: 'AuthLayout',
     component: {
@@ -106,17 +112,32 @@ import TextField from '../../components/TextField.vue'
     },
     data: () => ({
       links: [
-        'Dashboard',
-        'Parameter Setting',
-        'History',
+        // 'Dashboard',
+        // 'Parameter Setting',
+        // 'History',
+        {
+          name: 'Dashboard', path: '/home'
+        },
+        {
+          name: 'Parameter Setting', path:'/setting'
+        },
+        {
+          name: 'History', path: '/history'
+        }
       ],
       navLinks : [
-        'Notification',
-        'Report',
-        'Setting',
-        'Mode'
+        {
+          name: 'Notification', path: ''
+        },
+        {
+          name: 'Report', path: ''
+        },
+        {
+          name: 'Setting', path: ''
+        },
+
       ],
-      darkTheme: false,
+      darkTheme: true,
     }),
     methods: {
     toggleTheme() {
